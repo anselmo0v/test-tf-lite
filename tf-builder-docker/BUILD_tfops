@@ -1,0 +1,16 @@
+load(
+   "//tensorflow/lite/delegates/flex:build_def.bzl",
+   "tflite_flex_shared_library"
+)
+
+# Shared lib target for convenience, pulls in the standard set of TensorFlow
+# ops and kernels. The output library name is platform dependent:
+#   - Linux/Android: `libtensorflowlite_flex.so`
+#   - Mac: `libtensorflowlite_flex.dylib`
+#   - Windows: `libtensorflowlite_flex.dll`
+tflite_flex_shared_library(
+ name = "tensorflowlite_flex",
+ models = [
+     ":cpp_tf_test.tflite",
+ ],
+)
